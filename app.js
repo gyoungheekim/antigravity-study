@@ -1,6 +1,7 @@
 /**
  * CORTIS STAGE ON-AIR - Behavior Script
  * Rebranded for CORTIS, now supporting robust localStorage schedule edits.
+ * Updated: Supports timeless schedules (date-only tasks).
  */
 
 // ==========================================================================
@@ -136,38 +137,38 @@ function generateCORTISDefaultSchedules() {
       category: 'fansign',
       content: 'Meet&Greet 일본 오프라인'
     },
-    {
+  {
       id: 'cortis-init-12',
       date: '2026-06-20',
-      time: '00:00', // 시간이 없어서 기본값 설정
+      time: '', // 시간 미정 상태로 변경
       category: 'event',
       content: 'Allo Bank Festival (인도네시아 아레나)'
     },
     {
       id: 'cortis-init-13',
       date: '2026-07-18',
-      time: '00:00',
+      time: '', // 시간 미정 상태로 변경
       category: 'tour',
       content: 'PUT YOUR PHONE DOWN INCHEON (인스파이어 아레나)'
     },
     {
       id: 'cortis-init-14',
       date: '2026-07-19',
-      time: '00:00',
+      time: '', // 시간 미정 상태로 변경
       category: 'tour',
       content: 'PUT YOUR PHONE DOWN INCHEON (인스파이어 아레나)'
     },
     {
       id: 'cortis-init-15',
       date: '2026-07-25',
-      time: '00:00',
+      time: '', // 시간 미정 상태로 변경
       category: 'award',
       content: 'KMA 차트어워즈 (고려대학교 화정체육관)'
     },
     {
       id: 'cortis-init-16',
       date: '2026-07-31',
-      time: '00:00',
+      time: '', // 시간 미정 상태로 변경
       category: 'event',
       content: 'Lollapalooza Early Show'
     }
