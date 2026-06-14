@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="코르티스(CORTIS) 아티스트의 스케줄을 한눈에 관리하고 실시간 필터링을 체험하는 반응형 팬 스케줄러입니다.">
+  <title>CORTIS STAGE ON-AIR</title>
+  
+  <!-- Google Fonts: Outfit & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome Icons for vibrant UI -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- App Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Background Decorative Glowing Lights -->
+  <div class="glow-bg-container">
+    <div class="glow-circle purple"></div>
+    <div class="glow-circle pink"></div>
+    <div class="glow-circle blue"></div>
+  </div>
+
+  <!-- Toast Notification Wrapper -->
+  <div id="toast-container" class="toast-container"></div>
+
+  <div class="app-container">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="logo-area">
+        <div class="pulse-dot"></div>
+        <h1 id="app-title">CORTIS <span class="accent-text">ON-AIR</span></h1>
+      </div>
+      <p class="subtitle">코르티스(CORTIS)와 함께하는 모든 특별한 무대 기록</p>
+      <button id="btn-open-modal" class="btn btn-primary btn-glow" aria-label="새 스케줄 등록">
+        <i class="fa-solid fa-plus"></i> 스케줄 등록
+      </button>
+    </header>
+
+    <!-- Main Dashboard Grid -->
+    <main class="main-dashboard">
+      
+      <!-- Left Column: Today's Timeline -->
+      <section class="dashboard-col today-timeline-section" aria-labelledby="today-heading">
+        <div class="section-header">
+          <div class="header-title-wrapper">
+            <i class="fa-solid fa-satellite-dish icon-glow"></i>
+            <h2 id="today-heading">TODAY'S STAGE</h2>
+          </div>
+          <span id="current-date-display" class="date-badge">2026.06.11</span>
+        </div>
+        
+        <!-- Today's timeline list container -->
+        <div id="today-timeline-container" class="timeline-container">
+          <!-- Dynamically populated via JS -->
+          <div class="no-schedule-fallback">
+            <i class="fa-solid fa-moon fallback-icon"></i>
+            <p>오늘 등록된 공식 일정이 없습니다.</p>
+            <p class="fallback-sub">새로운 스케줄을 등록하여 무대를 채워주세요!</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Right Column: Full Database & Filtering -->
+      <section class="dashboard-col overall-schedule-section" aria-labelledby="overall-heading">
+        <div class="section-header space-between">
+          <div class="header-title-wrapper">
+            <i class="fa-solid fa-database icon-glow"></i>
+            <h2 id="overall-heading">SCHEDULE DATABASE</h2>
+          </div>
+          <div class="action-btn-group">
+            <button id="btn-clear-all" class="btn btn-secondary btn-sm" title="모든 데이터 초기화">
+              <i class="fa-solid fa-trash-can"></i> 전체 삭제
+            </button>
+          </div>
+        </div>
+
+        <!-- Category Filter Tabs -->
+        <nav class="filter-tabs-container" aria-label="카테고리 필터">
+          <button class="tab-btn active" data-category="all" id="tab-all">
+            <span class="tab-text">전체</span>
+            <span class="tab-count" id="count-all">0</span>
+          </button>
+          <button class="tab-btn" data-category="broadcast" id="tab-broadcast">
+            <span class="tab-indicator indicator-broadcast"></span>
+            <span class="tab-text">음악방송</span>
+            <span class="tab-count" id="count-broadcast">0</span>
+          </button>
+          <button class="tab-btn" data-category="fansign" id="tab-fansign">
+            <span class="tab-indicator indicator-fansign"></span>
+            <span class="tab-text">팬싸인회</span>
+            <span class="tab-count" id="count-fansign">0</span>
+          </button>
+          <button class="tab-btn" data-category="videocall" id="tab-videocall">
+            <span class="tab-indicator indicator-videocall"></span>
+            <span class="tab-text">영통팬싸</span>
+            <span class="tab-count" id="count-videocall">0</span>
+          </button>
+          <button class="tab-btn" data-category="comeback" id="tab-comeback">
+            <span class="tab-indicator indicator-comeback"></span>
+            <span class="tab-text">컴백/티저</span>
+            <span class="tab-count" id="count-comeback">0</span>
+          </button>
+          <button class="tab-btn" data-category="event" id="tab-event">
+            <span class="tab-indicator indicator-event"></span>
+            <span class="tab-text">행사</span>
+            <span class="tab-count" id="count-event">0</span>
+          </button>
+          <button class="tab-btn" data-category="etc" id="tab-etc">
+            <span class="tab-indicator indicator-etc"></span>
+            <span class="tab-text">기타</span>
+            <span class="tab-count" id="count-etc">0</span>
+          </button>
+        </nav>
+
+        <!-- Filtered Schedule Database List -->
+        <div id="database-schedule-list" class="schedule-db-list">
+          <!-- Dynamically populated via JS -->
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+      <p>&copy; 2026 CORTIS ON-AIR. Crafted with <i class="fa-solid fa-heart beat-icon"></i> for CORTIS & developers.</p>
+    </footer>
+  </div>
+
+  <!-- Glassmorphic Modal overlay for Schedule Registration -->
+  <div id="schedule-modal" class="modal-overlay" aria-hidden="true" role="dialog" aria-labelledby="modal-title">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 id="modal-title"><i class="fa-solid fa-circle-plus header-icon"></i> 스케줄 등록</h3>
+        <button id="btn-close-modal-x" class="btn-close" aria-label="닫기">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      
+      <form id="schedule-form" novalidate>
+        <div class="form-body">
+          <!-- Date & Time Row -->
+          <div class="form-row split">
+            <div class="form-group">
+              <label for="input-date">날짜 <span class="req">*</span></label>
+              <div class="input-wrapper">
+                <i class="fa-solid fa-calendar input-icon"></i>
+                <input type="date" id="input-date" required>
+              </div>
+              <span class="error-message" id="error-date">날짜를 선택해 주세요.</span>
+            </div>
+            <div class="form-group">
+              <label for="input-time">시간 <span class="req">*</span></label>
+              <div class="input-wrapper">
+                <i class="fa-solid fa-clock input-icon"></i>
+                <input type="time" id="input-time" required>
+              </div>
+              <span class="error-message" id="error-time">시간을 입력해 주세요.</span>
+            </div>
+          </div>
+
+          <!-- Category selection -->
+          <div class="form-group">
+            <label>카테고리 분류 <span class="req">*</span></label>
+            <div class="category-radio-group">
+              <label class="radio-label">
+                <input type="radio" name="input-category" value="broadcast" required>
+                <span class="custom-radio radio-broadcast"></span>
+                <span>음악방송</span>
+              </label>
+              <label class="radio-label">
+                <input type="radio" name="input-category" value="fansign">
+                <span class="custom-radio radio-fansign"></span>
+                <span>팬싸인회</span>
+              </label>
+              <label class="radio-label">
+                <input type="radio" name="input-category" value="videocall">
+                <span class="custom-radio radio-videocall"></span>
+                <span>영통팬싸</span>
+              </label>
+              <label class="radio-label">
+                <input type="radio" name="input-category" value="comeback">
+                <span class="custom-radio radio-comeback"></span>
+                <span>컴백/티저</span>
+              </label>
+              <label class="radio-label">
+                <input type="radio" name="input-category" value="event">
+                <span class="custom-radio radio-event"></span>
+                <span>행사</span>
+              </label>
+              <label class="radio-label">
+                <input type="radio" name="input-category" value="etc">
+                <span class="custom-radio radio-etc"></span>
+                <span>기타</span>
+              </label>
+            </div>
+            <span class="error-message" id="error-category">카테고리를 선택해 주세요.</span>
+          </div>
+
+          <!-- Content Description -->
+          <div class="form-group">
+            <label for="input-content">스케줄 내용 <span class="req">*</span></label>
+            <div class="input-wrapper">
+              <i class="fa-solid fa-align-left input-icon"></i>
+              <textarea id="input-content" rows="3" placeholder="예: 코르티스 미니 1집 'color outside the line' SBS 인기가요 출연" required></textarea>
+            </div>
+            <span class="error-message" id="error-content">스케줄 내용을 입력해 주세요.</span>
+          </div>
+        </div>
+
+        <div class="form-footer">
+          <button type="button" id="btn-cancel" class="btn btn-secondary">취소</button>
+          <button type="submit" id="btn-submit" class="btn btn-primary btn-glow-pink">등록하기</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- App Script -->
+  <script src="app.js"></script>
+</body>
+</html>
