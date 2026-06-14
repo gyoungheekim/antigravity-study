@@ -1,4 +1,4 @@
-# COER를 위한 CORTIS 스케줄 타임라인 플랫폼
+# COER를 위한 CORTIS 스케줄표 플랫폼
 
 ## 이 사이트는 아티스트의 컴백 시즌에 쏟아지는 음악방송, 팬싸인회 등 수많은 스케줄을 팬들이 놓치지 않도록 돕는 스케줄 타임라인 웹사이트입니다.
 
@@ -15,5 +15,4 @@
 | **날짜 및 시간 선택** |
 | **카테고리 선택** |
 
-## 링크 바로가기
-https://gyoungheekim.github.io/antigravity-study/
+[웹사이트 보러가기](https://gyoungheekim.github.io/antigravity-study/)
