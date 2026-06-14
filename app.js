@@ -58,57 +58,83 @@ function formatPrettyDate(dateStr) {
 // CORTIS DEFAULT DATA INITIALIZER
 // ==========================================================================
 function generateCORTISDefaultSchedules() {
-  const today = getTodayString();
-  
   return [
     {
       id: 'cortis-init-1',
-      date: today,
-      time: '14:00',
-      category: 'videocall',
-      content: '코르티스(CORTIS) 데뷔 1주년 기념 1:1 스페셜 영통팬싸인회'
+      date: '2026-04-20',
+      time: '18:00',
+      category: 'comeback',
+      content: "리드 싱글 'REDRED' 발매"
     },
     {
       id: 'cortis-init-2',
-      date: today,
-      time: '18:00',
-      category: 'broadcast',
-      content: 'Mnet 엠카운트다운 - 코르티스 신곡 RESONANCE 컴백 스페셜 무대 본방송'
+      date: '2026-04-20',
+      time: '20:00',
+      category: 'etc',
+      content: "리드 싱글 ‘REDRED' 발매 기념 릴리즈 파티"
     },
     {
       id: 'cortis-init-3',
-      date: today,
-      time: '22:00',
+      date: '2026-05-04',
+      time: '18:00',
       category: 'comeback',
-      content: 'CORTIS 공식 유튜브 채널 - 미니 1집 "color outside the line" 컴백 기념 스페셜 코멘터리 톡방'
+      content: "EP 2집 'GREENGREEN' 발매"
     },
     {
       id: 'cortis-init-4',
-      date: getOffsetDateString(1), // Tomorrow
-      time: '19:00',
-      category: 'fansign',
-      content: '코르티스 미니 2집 발매 기념 오프라인 팬싸인회 (핫트랙스 명동점 대면)'
+      date: '2026-05-04',
+      time: '20:00',
+      category: 'etc',
+      content: "EP 2집 'GREENGREEN' 발매 기념 릴리즈 파티"
     },
     {
       id: 'cortis-init-5',
-      date: getOffsetDateString(3), // In 3 days
-      time: '00:00',
-      category: 'comeback',
-      content: 'CORTIS 미니 3집 서브 타이틀곡 "Double Green" 공식 티저 이미지 & 뮤비 티저 공개'
+      date: '2026-05-30',
+      time: '15:50',
+      category: 'broadcast',
+      content: "MBC 음악중심 'ACAI'"
     },
     {
       id: 'cortis-init-6',
-      date: getOffsetDateString(2), // In 2 days
-      time: '15:00',
-      category: 'etc',
-      content: 'CORTIS 공식 팬카페 - 데뷔 1주년 스페셜 텍스트 채팅 파티 이벤트'
+      date: '2026-06-04',
+      time: '18:00',
+      category: 'broadcast',
+      content: "KBS 뮤직뱅크 'YOUNGCREATORCREW'"
     },
     {
       id: 'cortis-init-7',
-      date: getOffsetDateString(4), // In 4 days
+      date: '2026-06-07',
+      time: '15:15',
+      category: 'broadcast',
+      content: "SBS 인기가요 'REDRED' 막방"
+    },
+    {
+      id: 'cortis-init-8',
+      date: '2026-06-10',
       time: '19:00',
+      category: 'videocall',
+      content: "위드뮤 'REDRED' 영통팬싸"
+    },
+    {
+      id: 'cortis-init-9',
+      date: '2026-06-12',
+      time: '09:00',
       category: 'event',
-      content: 'CORTIS 2026 드림콘서트 본공연 라이브 무대 출연 (서울 월드컵 경기장)'
+      content: '2026 FIFA 북중미 월드컵 서울 광화문 광장 거리 응원'
+    },
+    {
+      id: 'cortis-init-10',
+      date: '2026-06-13',
+      time: '18:00',
+      category: 'event',
+      content: '레드불 댄스 유어 스타일 스페셜'
+    },
+    {
+      id: 'cortis-init-11',
+      date: '2026-06-14',
+      time: '19:00',
+      category: 'fansign',
+      content: 'Meet&Greet 일본 오프라인'
     }
   ];
 }
